@@ -124,7 +124,7 @@ const ProviderCard: React.FC<{ provider: typeof providers[0]; onSelect: (id: str
 };
 
 /* ── Mock SSO Modal ── */
-const SSOModal: React.FC<{ provider: string; onClose: () => void; onSuccess: () => void }> = ({ provider, onClose, onSuccess }) => {
+const SSOModal: React.FC<{ provider: string; onClose: () => void }> = ({ provider, onClose }) => {
   const [step, setStep] = useState<'redirecting' | 'auth' | 'success'>('redirecting');
   const { login } = useAuthStore();
 
@@ -299,7 +299,7 @@ export const LoginForm: React.FC<{ onSwitchView: (v: AuthView) => void }> = ({ o
 
       {/* SSO Modal */}
       <AnimatePresence>
-        {ssoModal && <SSOModal provider={ssoModal} onClose={() => setSsoModal(null)} onSuccess={() => setSsoModal(null)} />}
+        {ssoModal && <SSOModal provider={ssoModal} onClose={() => setSsoModal(null)} />}
       </AnimatePresence>
     </>
   );

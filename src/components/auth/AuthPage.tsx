@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuthStore } from '../../store/authStore';
-import type { UserRole } from '../../store/authStore';
 import { AuthBackground } from './AuthBackground';
 import { LeftPanel } from './LeftPanel';
 import { LoginForm } from './LoginForm';

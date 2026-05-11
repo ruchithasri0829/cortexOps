@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, Bell, Settings, User, Maximize, Check, Clock, Info, ShieldAlert, Cpu } from 'lucide-react';
+import { Menu, Bell, Settings, User, Maximize, Check, Clock, Info, ShieldAlert } from 'lucide-react';
 import { useUiStore } from '../store/uiStore';
 import { useAuthStore } from '../store/authStore';
 import type { Language } from '../i18n/translations';

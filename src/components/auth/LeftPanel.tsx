@@ -102,9 +102,6 @@ export const LeftPanel: React.FC = () => {
 
           {/* Data flow pulses */}
           {satellites.map((sat, i) => {
-            const rad = (sat.angle * Math.PI) / 180;
-            const ex = cx + Math.cos(rad) * R;
-            const ey = cy + Math.sin(rad) * R;
             return (
               <circle key={`p${i}`} r="2.5" fill={sat.color} filter="url(#glow-sm)">
                 <animateMotion dur={`${2.8 + i * 0.4}s`} repeatCount="indefinite" begin={`${i * 0.5}s`}>
