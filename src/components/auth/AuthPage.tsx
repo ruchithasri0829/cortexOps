@@ -5,7 +5,7 @@ import type { UserRole } from '../../store/authStore';
 import { useUiStore } from '../../store/uiStore';
 import { 
   Cpu, Mail, User as UserIcon, ShieldAlert, KeyRound, 
-  ArrowRight, Eye, EyeOff, Check, Chrome, Github, 
+  ArrowRight, Eye, EyeOff, Check, 
   Lock, Globe, Terminal, Loader2
 } from 'lucide-react';
 import { AuthBackground } from './AuthBackground';
@@ -14,8 +14,6 @@ type AuthView = 'welcome' | 'login' | 'signup' | 'forgot-password';
 
 export const AuthPage: React.FC = () => {
   const [view, setView] = useState<AuthView>('welcome');
-  const { t } = useUiStore();
-  const { error, setError } = useAuthStore();
 
   useEffect(() => {
     // Show welcome screen for 2 seconds then transition to login
@@ -109,7 +107,6 @@ export const AuthPage: React.FC = () => {
 
 function LoginForm({ onSwitchView }: { onSwitchView: (v: AuthView) => void }) {
   const { login, setLoading, isLoading, error, setError } = useAuthStore();
-  const { t } = useUiStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -154,11 +151,11 @@ function LoginForm({ onSwitchView }: { onSwitchView: (v: AuthView) => void }) {
       {/* Social Login */}
       <div className="grid grid-cols-2 gap-3">
          <button className="flex items-center justify-center gap-2 py-3 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all text-[11px] font-bold uppercase tracking-wider text-white/80">
-            <Chrome size={16} className="text-white/60" />
+            <Globe size={16} className="text-white/60" />
             Google
          </button>
          <button className="flex items-center justify-center gap-2 py-3 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 transition-all text-[11px] font-bold uppercase tracking-wider text-white/80">
-            <Globe size={16} className="text-white/60" />
+            <Terminal size={16} className="text-white/60" />
             Microsoft
          </button>
       </div>
@@ -246,7 +243,6 @@ function LoginForm({ onSwitchView }: { onSwitchView: (v: AuthView) => void }) {
 
 function SignupForm({ onSwitchView }: { onSwitchView: (v: AuthView) => void }) {
   const { signup, setLoading, isLoading, error, setError } = useAuthStore();
-  const { t } = useUiStore();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -392,7 +388,6 @@ function SignupForm({ onSwitchView }: { onSwitchView: (v: AuthView) => void }) {
 /* -------------------------------------------------------------------------- */
 
 function ForgotPasswordForm({ onSwitchView }: { onSwitchView: (v: AuthView) => void }) {
-  const { setError } = useAuthStore();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);

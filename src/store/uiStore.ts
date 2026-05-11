@@ -1,10 +1,9 @@
-type Language = 'en' | 'hi' | 'te' | 'ja' | 'de';
-
-type TranslationKey = keyof typeof translations.en;
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { translations } from '../i18n/translations';
-export type { Language, TranslationKey } from '../i18n/translations';
+
+export type Language = 'en' | 'hi' | 'te' | 'ja' | 'de';
+export type TranslationKey = keyof typeof translations.en;
 
 export type Tab = 'dashboard' | 'processes' | 'analytics' | 'alerts' | 'builder' | 'settings';
 export type AlarmTier = 'critical' | 'watch' | 'info';
@@ -149,15 +148,10 @@ export const useUiStore = create<UiState>()(
         notifications: state.notifications.map(n => n.id === id ? { ...n, read: true } : n)
       })),
       clearNotifications: () => set({ notifications: [] }),
-      t: (key) => {
+      t: (key: TranslationKey) => {
         const lang = get().language;
-        return (
-          translations[lang as keyof typeof translations]?.[
-          key as keyof typeof translations.en
-          ] ||
-          translations.en[key as keyof typeof translations.en] ||
-          key
-        );
+        const translationSet = translations[lang as keyof typeof translations] || translations.en;
+        return (translationSet as any)[key] || (translations.en as any)[key] || key;
       },
     }),
     {
