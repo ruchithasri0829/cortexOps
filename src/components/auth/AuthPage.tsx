@@ -1,3 +1,4 @@
+// CortexOps Authentication Orchestrator - v1.1.0
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuthStore } from '../../store/authStore';
